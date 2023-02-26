@@ -28,6 +28,9 @@ const allChords = []
 const labelCounts = []
 const labelProbabilities = []
 const chordCountsInLabels = {}
+const EASY = 'easy'
+const MEDIUM = 'medium'
+const HARD = 'hard'
 let probabilityOfChordsInLabels = {}
 function train(chords, label) {
   songs.push([label, chords])
@@ -43,13 +46,9 @@ function train(chords, label) {
     labelCounts[label] = 1
   }
 }
-function getNumberOfSongs() {
-  return songs.length
-}
 function setLabelProbabilities() {
   Object.keys(labelCounts).forEach(function (label) {
-    const numberOfSongs = getNumberOfSongs()
-    labelProbabilities[label] = labelCounts[label] / numberOfSongs
+    labelProbabilities[label] = labelCounts[label] / songs.length
   })
 }
 function setChordCountsInLabels() {
@@ -72,20 +71,19 @@ function setProbabilityOfChordsInLabels() {
     Object.keys(probabilityOfChordsInLabels[difficulty]).forEach(function (
       chord
     ) {
-      probabilityOfChordsInLabels[difficulty][chord] =
-        probabilityOfChordsInLabels[difficulty][chord] / songs.length
+      probabilityOfChordsInLabels[difficulty][chord] /= songs.length
     })
   })
 }
-train(imagine, 'easy')
-train(somewhereOverTheRainBow, 'easy')
-train(tooManyCooks, 'easy')
-train(iWillFollowYouIntoTheDark, 'medium')
-train(babyOneMoreTime, 'medium')
-train(creep, 'medium')
-train(paperBag, 'hard')
-train(toxic, 'hard')
-train(bulletproof, 'hard')
+train(imagine, EASY)
+train(somewhereOverTheRainBow, EASY)
+train(tooManyCooks, EASY)
+train(iWillFollowYouIntoTheDark, MEDIUM)
+train(babyOneMoreTime, MEDIUM)
+train(creep, MEDIUM)
+train(paperBag, HARD)
+train(toxic, HARD)
+train(bulletproof, HARD)
 setLabelProbabilities()
 setChordCountsInLabels()
 setProbabilityOfChordsInLabels()
