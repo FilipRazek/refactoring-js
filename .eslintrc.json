@@ -9,6 +9,7 @@
     "ecmaVersion": "latest"
   },
   "rules": {
-    "no-var": "error"
+    "no-var": "error",
+    "no-magic-numbers": ["error", { "ignoreArrayIndexes": true }]
   }
 }
