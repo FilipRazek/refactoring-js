@@ -1,3 +1,6 @@
+const getFileName = () => new Error().stack.match(/(\w+\.js)\:/)[1]
+console.log(`Welcome to ${getFileName()}!`)
+
 // songs
 const imagine = ['c', 'cmaj7', 'f', 'am', 'dm', 'g', 'e7']
 const somewhereOverTheRainBow = ['c', 'em', 'f', 'g', 'am']
