@@ -10,7 +10,10 @@
   },
   "rules": {
     "no-var": "error",
-    "no-magic-numbers": ["error", { "ignoreArrayIndexes": true }],
+    "no-magic-numbers": [
+      "error",
+      { "ignoreArrayIndexes": true, "ignore": [0, 1] }
+    ],
     "max-lines-per-function": ["warn", { "max": 15, "skipBlankLines": true }]
   }
 }
