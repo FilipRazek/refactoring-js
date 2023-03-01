@@ -1,5 +1,7 @@
-const getFileName = () => new Error().stack.match(/(\w+\.js):/)[1]
-console.log(`Welcome to ${getFileName()}!`)
+const wish = require('wish')
+
+const fileName = __filename.split(/[/\\]/).pop()
+console.log(`Welcome to ${fileName}!`)
 
 // songs
 const imagine = ['c', 'cmaj7', 'f', 'am', 'dm', 'g', 'e7']
@@ -96,7 +98,30 @@ function classify(chords) {
     })
     classified.set(difficulty, first)
   })
-  console.log(classified)
+  return classified
 }
-classify(['d', 'g', 'e', 'dm'])
-classify(['f#m7', 'a', 'dadd9', 'dmaj7', 'bm', 'bm7', 'd', 'f#m'])
+
+describe('classify', () => {
+  it('should classify shorter songs', () => {
+    const classified = classify(['d', 'g', 'e', 'dm'])
+    wish(classified.get(EASY) === 2.023094827160494)
+    wish(classified.get(MEDIUM) === 1.855758613168724)
+    wish(classified.get(HARD) === 1.855758613168724)
+  })
+
+  it('should classify longer songs', () => {
+    const classified = classify([
+      'f#m7',
+      'a',
+      'dadd9',
+      'dmaj7',
+      'bm',
+      'bm7',
+      'd',
+      'f#m',
+    ])
+    wish(classified.get(EASY) === 1.3433333333333333)
+    wish(classified.get(MEDIUM) === 1.5060259259259259)
+    wish(classified.get(HARD) === 1.6884223991769547)
+  })
+})

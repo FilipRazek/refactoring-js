@@ -2,18 +2,14 @@
   "env": {
     "browser": true,
     "commonjs": true,
-    "es2021": true
+    "es2021": true,
+    "mocha": true
   },
   "extends": ["standard", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
   "rules": {
-    "no-var": "error",
-    "no-magic-numbers": [
-      "error",
-      { "ignoreArrayIndexes": true, "ignore": [0, 1] }
-    ],
-    "max-lines-per-function": ["warn", { "max": 15, "skipBlankLines": true }]
+    "no-var": "error"
   }
 }
